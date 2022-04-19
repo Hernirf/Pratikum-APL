@@ -17,7 +17,7 @@ struct data{
 
 // deklarasi dari struct
 data loker[100];
-int a;
+int size;
 
 // Prosedur untuk tampilan judul kodingan
 void tampilan(){
@@ -51,24 +51,24 @@ void menambahkan(){
 	cout << endl;
 	for (int i=0; i<jumlah; i++){
 		cout << "Masukkan nama		             	" << ": "; fflush(stdin);
-		getline(cin, loker[a].nama);
-		cout << "Masukkan nama barang  yang dititip	" << ": "; cin >> loker[a].barang;
-		cout << "Masukkan nomor HP  \t\t\t: "; cin >> loker[a].nomorHP;
-		cout << "Masukkan tanggal (DD-MM-YY)		" << ": "; cin >> loker[a].tanggal; cout <<"\n";
-		a++;
+		getline(cin, loker[size].nama);
+		cout << "Masukkan nama barang  yang dititip	" << ": "; cin >> loker[size].barang;
+		cout << "Masukkan nomor HP  \t\t\t: "; cin >> loker[size].nomorHP;
+		cout << "Masukkan tanggal (DD-MM-YY)		" << ": "; cin >> loker[size].tanggal; cout <<"\n";
+		size++;
 	}
 }
 
 // Prosedur untuk menampilkan data loker
 void menampilkan(){
 	system("cls");
-	if (a==0)
+	if (size==0)
 	{
 		cout << "Data loker tidak ada "; getch();
 	}
-	else if (a>0)
+	else if (size>0)
 	{
-		for (int i=0; i<a; i++){
+		for (int i=0; i<size; i++){
 				loker[i].nomor=i+1;
 				cout << "\nNomor Loker 			" << ": "<< loker[i].nomor
 					<< "\nNama        			" << ": "<< loker[i].nama
@@ -82,7 +82,7 @@ void menampilkan(){
 // Prosedur untuk mengubah data loker
 void ubah_data(){
 	system("cls");
-	if (a==0){
+	if (size==0){
 		cout << "Tidak ada data yang bisa diubah "; getch();
 	}
 	else {
@@ -101,21 +101,21 @@ void ubah_data(){
 // prosedur untuk menghapus data loker
 void hapus_data(){
 	system("cls");
-	if (a==0){
+	if (size==0){
 		cout << "Tidak ada data yang bisa dihapus "; getch();
 	}
 	else{
 		int nomor_ubah;
 		char pilih;
-		if (a==1){
+		if (size==1){
 			system("cls");
 			menampilkan();
 			cout << "\nApakah ingin menghapus data? (y/t) "; cin >> pilih;
 			switch (pilih){
 				case 'y':
-					loker[a]=loker[a+1];
+					loker[size]=loker[size+1];
 					cout << "\nData berhasil terhapus "; getch();
-					a--;
+					size--;
 					break;
 				case 't':
 					cout << "Data tidak terhapus "; getch();
@@ -127,14 +127,14 @@ void hapus_data(){
 			menampilkan();
 			cout << "\nMasukkan nomor loker data yang ingin diubah: "; cin >> nomor_ubah;
 			int indeks=nomor_ubah-1;
-			for (int i=indeks; i<a; i++){
+			for (int i=indeks; i<size; i++){
 				cout << "\nNomor Loker 			" << ": "<< loker[i].nomor
 					<< "\nNama        			" << ": "<< loker[i].nama
 					<< "\nNama Barang 			" << ": "<< loker[i].barang
 					<< "\nNomor HP    			" << ": "<< loker[i].nomorHP
 					<< "\nTanggal (DD-MM-YY)\t\t" << ": "<< loker[i].tanggal <<"\n"; 
 				cout << "\nApakah ingin menghapus data? (y/t) "; cin >> pilih;
-				a--;
+				size--;
 				switch (pilih){
 					case 'y':
 						loker[i]=loker[i+1];
