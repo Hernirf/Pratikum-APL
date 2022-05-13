@@ -239,6 +239,7 @@ int binarisearch(int pilih)
 	return 0;
 }
 
+//Prosedur untuk search dengan metode interpolasi
 void interpolation_search(int pilih)
 {
 	quickSort_askending(loker,0,ukuran-1);
@@ -342,7 +343,7 @@ void tampilan(){
 	cout << "NIM : 2109106001" << endl;
     cout << endl;
     cout << "============================================================================================" << endl
-    	<<  "----------------------------------- POSTTEST 6 SEARCHING --------------------------------------" << endl
+    	<<  "----------------------------------- POSTTEST 6 SEARCHING -----------------------------------" << endl
      	<<  "----------------------------- Program Manajemen Data Loker ---------------------------------" << endl
     	<<  "============================================================================================" << endl;
     cout << endl;	
@@ -438,11 +439,14 @@ void ubah_data(){
 		int nomor_ubah;
 		cout << "\nMasukkan nomor loker data yang ingin diubah: "; cin >> nomor_ubah;
 		system("cls");
-		int indeks=nomor_ubah-1;
-		cout << "Masukkan nama		             	" << ": "; fflush(stdin); getline(cin, loker[indeks].nama);
-		cout << "Masukkan nama barang  yang dititip	" << ": "; cin >> loker[indeks].barang;
-		cout << "Masukkan nomor HP  \t\t\t: "; cin >> loker[indeks].nomorHP;
-		cout << "Masukkan tanggal (DD-MM-YY)		" << ": "; cin >> loker[indeks].tanggal; cout <<"\n";	
+		for(int i = 0; i < ukuran; i++){
+			if (loker[i].nomor == nomor_ubah){
+				cout << "Masukkan nama		             	" << ": "; fflush(stdin); getline(cin, loker[i].nama);
+				cout << "Masukkan nama barang  yang dititip	" << ": "; cin >> loker[i].barang;
+				cout << "Masukkan nomor HP  \t\t\t: "; cin >> loker[i].nomorHP;
+				cout << "Masukkan tanggal (DD-MM-YY)		" << ": "; cin >> loker[i].tanggal; cout <<"\n";	
+			}
+		}
 	}	
 }
 
@@ -470,25 +474,26 @@ void hapus_data(){
 			} 
 		}
 		else {
-			system("cls");
 			print();
 			cout << "\nMasukkan nomor loker data yang ingin diubah: "; cin >> nomor_ubah;
-			int indeks=nomor_ubah-1;
-			for (int i=indeks; i<ukuran; i++){
-				cout << "\nNomor Loker 			" << ": "<< loker[i].nomor
-					<< "\nNama        			" << ": "<< loker[i].nama
-					<< "\nNama Barang 			" << ": "<< loker[i].barang
-					<< "\nNomor HP    			" << ": "<< loker[i].nomorHP
-					<< "\nTanggal (DD-MM-YY)\t\t" << ": "<< loker[i].tanggal <<"\n"; 
-				cout << "\nApakah ingin menghapus data? (y/t) "; cin >> pilih;
-				ukuran--;
-				switch (pilih){
-					case 'y':
-						loker[i]=loker[i+1];
-						cout << "\nData berhasil terhapus "; getch();
-						break;
-					default:
-						cout << "Data tidak terhapus "; getch();
+			system("cls");
+			for (int i=0; i<ukuran; i++){
+				if (loker[i].nomor == nomor_ubah){
+					cout << "\nNomor Loker 			" << ": "<< loker[i].nomor
+						<< "\nNama        			" << ": "<< loker[i].nama
+						<< "\nNama Barang 			" << ": "<< loker[i].barang
+						<< "\nNomor HP    			" << ": "<< loker[i].nomorHP
+						<< "\nTanggal (DD-MM-YY)\t\t" << ": "<< loker[i].tanggal <<"\n"; 
+					cout << "\nApakah ingin menghapus data? (y/t) "; cin >> pilih;
+					switch (pilih){
+						case 'y':
+							loker[i]=loker[i+1];
+							ukuran--;
+							cout << "\nData berhasil terhapus "; getch();
+							break;
+						default:
+							cout << "Data tidak terhapus "; getch();
+					}
 				}	
 			}		
 		}		
