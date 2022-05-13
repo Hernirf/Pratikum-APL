@@ -236,6 +236,7 @@ int binarisearch(int pilih)
 	if (index==-1){
 		cout << "\nData tidak ditemukan"; getch();
 	}
+	return 0;
 }
 
 void interpolation_search(int pilih)
