@@ -14,7 +14,7 @@ struct data_loker{
 }; 
 
 // deklarasi dari struct
-data_loker loker[100]={{1,"Herni","Helm","082255966424","13-05-2022"},{2,"Daus","Tas","082255966424","12-05-2022"},{3,"Herni","Tas","082255966424","11-05-2022"}};
+data_loker loker[100]={{1,"Herni","Helm","082255966424","13-05-2022"},{2,"Daus","Tas","082255966424","12-05-2022"},{3,"Rahman","Tas","082255966424","11-05-2022"}};
 int ukuran=3;
 
 // Prosedur sort atribut nama dengan metode bubblesort
