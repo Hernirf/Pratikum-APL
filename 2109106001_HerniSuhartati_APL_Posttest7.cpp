@@ -22,7 +22,6 @@ int ukuran=3;
 fstream fileHerni;
 
 
-
 void print()
 {
 	system("cls");
@@ -283,6 +282,7 @@ void search(){
 	}
 }
 
+// Prosedur membaca isi file eksternal
 void read_file(){
 	string isi_file;
 	fileHerni.open("posttest7.txt", ios::in);
@@ -293,6 +293,7 @@ void read_file(){
 	fileHerni.close();
 }
 
+// Prosedur menambahkan isi file eksternal
 void app_file(){
 	fileHerni.open("posttest7.txt", ios::app);
 	fileHerni << "\nNomor Loker 			" << ": "<< loker[ukuran].nomor
@@ -303,6 +304,7 @@ void app_file(){
 	fileHerni.close();
 }
 
+// Prosedur menulis isi file
 void write_file(){
 	fileHerni.open("posttest7.txt", ios::out);
 	for (int i=0; i<ukuran; i++){
@@ -314,10 +316,17 @@ void write_file(){
 	} fileHerni.close();
 }
 
+//Prosedur membuka file
+void open_file(){
+	fileHerni.open("posttest7.txt", ios::in);
+	if(!fileHerni.is_open()){
+		fileHerni.open("posttest7.txt", ios::in | ios::trunc);
+		fileHerni.close();
+	}
+	fileHerni.close();
+}
 
 
-
-//Proser untuk print data
 // Prosedur untuk tampilan judul kodingan
 void tampilan(){
 	cout << "Nama: Herni Suhartati " << endl;
@@ -421,7 +430,6 @@ void ubah_data(){
 			}
 		}
 	}	
-	write_file();
 }
 
 // prosedur untuk menghapus data loker
@@ -472,7 +480,6 @@ void hapus_data(){
 			}		
 		}		
 	}
-	write_file();
 }
 
 void file_manajemen(){
@@ -482,7 +489,8 @@ void file_manajemen(){
 	 	<< 	 "       FILE MANAJEMEN			" << endl
 	   	<<   "=============================		" << endl
 	 	<<   "[1] Lihat isi file					" << endl
-	 	<<   "[2] Hapus file					" << endl;
+	 	<<   "[2] Hapus file					" << endl
+		<<   "[3] Kembali					" << endl;
 	cout << endl;
 	cout << "Masukkan pilihan: "; cin >> pilih;
 	system("cls");
@@ -495,6 +503,8 @@ void file_manajemen(){
 		case 2:
 			remove("posttest7.txt");
 			cout << "File berhasil dihapus"; getch();
+			break;
+		case 3:
 			break;
 	}
 }
@@ -509,6 +519,7 @@ void keluar(){
 int main(){
 	int pilih;
 	system("cls");
+	open_file();
 	tampilan();
 	menu_utama();
 	cout<<"\n\nMasukkan Pilihan : ";
@@ -528,10 +539,12 @@ int main(){
 				break;
 			case 4:
 				ubah_data();
+				write_file();
 				main();
 				break; // kondisi jika user  memilih untuk ubah data
 			case 5:
 				hapus_data();
+				write_file();
 				main();
 				break;
 			case 6:
